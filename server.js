@@ -18,6 +18,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root route to test the server
+app.get("/", (req, res) => {
+  res.send("Welcome to the Amukha Authentication Backend");
+});
+
 // Register a new client
 app.post("/api/register", async (req, res) => {
   const { name, startDate, endDate, cin } = req.body;
@@ -84,7 +89,7 @@ app.post("/api/unlock", async (req, res) => {
   res.json({ message: `Client ${cin} unlocked.` });
 });
 
-// Start server
+// Start server on a dynamic port
 app.listen(process.env.PORT || 5000, () => {
   console.log(`✅ Amukha Server running on port ${process.env.PORT || 5000}`);
 });
